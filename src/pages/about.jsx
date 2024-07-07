@@ -10,7 +10,7 @@ function Test() {
     <div>
       <div className='bg-[#dedede] m-auto text-center pt-20'><h1 className='text-3xl font-bold'>About Me</h1></div>
       <div className='flex bg-[#dedede]'>
-        <div className='flex px-10 pt-5 float-end max-md:flex-col max-md:px-5'>
+        <div className='flex px-10 pt-5 float-end max-lg:flex-col max-md:px-5'>
           <img src="./kittipakorn.png" className=' m-auto bottom-0' alt="Body" />
           <div className='p-10'>
             <h1 className='text-[#3B98EE] text-4xl pb-6 font-bold'>Kittipakorn Seenak</h1>
