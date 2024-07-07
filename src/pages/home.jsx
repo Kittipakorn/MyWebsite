@@ -17,6 +17,29 @@ function Home() {
             "name": "The 19th Thailand Olympiad in Informatics",
         },
     ]
+    const [result, setResult] = React.useState("");
+    const onSubmit = async (event) => {
+        event.preventDefault();
+        setResult("Sending....");
+        const formData = new FormData(event.target);
+
+        formData.append("access_key", "c4b3251a-78fc-4a66-bc7a-da057f35b602");
+
+        const response = await fetch("https://api.web3forms.com/submit", {
+            method: "POST",
+            body: formData
+        });
+
+        const data = await response.json();
+
+        if (data.success) {
+            setResult("Form Submitted Successfully");
+            event.target.reset();
+        } else {
+            console.log("Error", data);
+            setResult(data.message);
+        }
+    };
     return (
         <>
             <div className='bg-black min-h-[60vh] pt-16'>
@@ -72,7 +95,7 @@ function Home() {
                 <div className='flex flex-col mx-auto w-[60vw] max-md:w-[90vw] pb-5 pt-2 bg-[#f3f3f3] rounded-3xl shadow-[0_4px_30px_rgba(0,0,0,0.1)] border border-solid border-[rgba(255,255,255,0.23)];'>
                     <h1 className='text-center text-2xl pb-2 pt-2'>Say hello!</h1>
                     <div className='px-5'>
-                        <form className='flex flex-col space-y-4'>
+                        <form onSubmit={onSubmit} className='flex flex-col space-y-4'>
                             <div className='flex flex-col gap-2'>
                                 <label for="name">Name</label>
                                 <input type="text" id="name" name="name" placeholder="Name" className='block w-full rounded-md border-0 p-3 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset sm:text-sm sm:leading-6'></input>
